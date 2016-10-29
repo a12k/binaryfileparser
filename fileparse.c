@@ -1,3 +1,23 @@
+/*Header:
+
+| 4 byte magic string | 1 byte version | 4 byte (uint32) # of records |
+
+Record:
+
+| 1 byte record type enum | 4 byte (uint32) Unix timestamp | 8 byte (uint64) user ID |
+
+Record type enum:
+
+* 0x00: Debit
+* 0x01: Credit
+* 0x02: StartAutopay
+* 0x03: EndAutopay
+
+Debit and Credit record types, there is an additional field, an 8 byte
+(float64) amount in dollars, at the end of the record.
+
+All multi-byte fields are encoded in network byte order. */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
